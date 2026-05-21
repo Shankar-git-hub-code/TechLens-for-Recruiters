@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tech Recruiter Cheat Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Mono&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f7f6f3;--surface:#fff;--surface2:#f2f1ee;
+  --border:#e4e3de;--border2:#d0cfc9;
+  --text:#1a1917;--text2:#5c5b57;--text3:#9c9b97;
+  --blue-bg:#e8f1fb;--blue-tx:#1558a0;
+  --green-bg:#e6f3e0;--green-tx:#2d6e18;
+  --amber-bg:#fdf0d8;--amber-tx:#8a5200;
+  --red-bg:#fdeaea;--red-tx:#9b2222;
+  --purple-bg:#efedfd;--purple-tx:#4a3db0;
+  --teal-bg:#e0f4ee;--teal-tx:#0d6e54;
+  --r-sm:6px;--r-md:10px;--r-lg:14px;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;min-height:100vh}
+.app{display:flex;min-height:100vh}
+
+/* sidebar */
+.sidebar{width:220px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);padding:1.25rem 1rem;position:sticky;top:0;height:100vh;overflow-y:auto}
+.logo{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.logo i{font-size:18px;color:var(--blue-tx)}
+.grp{margin-bottom:1.25rem}
+.grp-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);font-weight:600;margin-bottom:4px;padding-left:8px}
+.nav-btn{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:7px 10px;border-radius:var(--r-sm);border:none;background:transparent;font-size:13.5px;font-family:'DM Sans',sans-serif;color:var(--text2);cursor:pointer;margin-bottom:1px;transition:background .12s,color .12s}
+.nav-btn i{font-size:15px;flex-shrink:0}
+.nav-btn:hover{background:var(--surface2);color:var(--text)}
+.nav-btn.active{background:var(--blue-bg);color:var(--blue-tx);font-weight:500}
+
+/* main */
+.main{flex:1;padding:1.75rem 2rem;min-width:0}
+
+/* search */
+.search-wrap{position:relative;margin-bottom:1.5rem}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:17px;color:var(--text3);pointer-events:none}
+#searchInput{width:100%;padding:11px 14px 11px 38px;border-radius:var(--r-md);border:1px solid var(--border2);background:var(--surface);font-size:14px;font-family:'DM Sans',sans-serif;color:var(--text);transition:border .15s,box-shadow .15s}
+#searchInput::placeholder{color:var(--text3)}
+#searchInput:focus{outline:none;border-color:#7baae8;box-shadow:0 0 0 3px rgba(123,170,232,.18)}
+.suggestions{display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--surface);border:1px solid var(--border2);border-radius:var(--r-md);z-index:100;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.09)}
+.sugg-item{display:flex;align-items:center;gap:9px;padding:9px 14px;font-size:13.5px;cursor:pointer;color:var(--text2)}
+.sugg-item i{font-size:15px;color:var(--text3)}
+.sugg-item:hover{background:var(--surface2);color:var(--text)}
+
+/* home */
+.home{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:420px;gap:10px;text-align:center;color:var(--text3)}
+.home-icon{width:64px;height:64px;background:var(--surface2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:8px}
+.home h2{font-size:16px;font-weight:500;color:var(--text2)}
+.home p{font-size:13.5px;max-width:300px;line-height:1.6}
+
+/* hero */
+.hero{display:flex;align-items:flex-start;gap:18px;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.tech-icon{width:60px;height:60px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.hero-title{font-size:24px;font-weight:600;margin-bottom:4px}
+.hero-sub{font-size:14px;color:var(--text2);margin-bottom:10px;line-height:1.5}
+.badges{display:flex;flex-wrap:wrap;gap:6px}
+.badge{font-size:11.5px;padding:3px 10px;border-radius:20px;font-weight:500}
+.b-blue{background:var(--blue-bg);color:var(--blue-tx)}
+.b-green{background:var(--green-bg);color:var(--green-tx)}
+.b-amber{background:var(--amber-bg);color:var(--amber-tx)}
+.b-red{background:var(--red-bg);color:var(--red-tx)}
+.b-purple{background:var(--purple-bg);color:var(--purple-tx)}
+.b-teal{background:var(--teal-bg);color:var(--teal-tx)}
+
+/* sections */
+.sections{display:grid;gap:1rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.125rem 1.375rem}
+.card-hd{display:flex;align-items:center;gap:8px;margin-bottom:1rem}
+.card-hd i{font-size:18px}
+.card-title{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text3)}
+
+/* analogy */
+.analogy-box{background:var(--surface2);border-radius:var(--r-md);padding:1rem 1.125rem}
+.a-head{font-size:15.5px;font-weight:600;color:var(--text);margin-bottom:6px}
+.a-body{font-size:13.5px;color:var(--text2);line-height:1.65}
+
+/* builds */
+.builds-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.build{background:var(--surface2);border-radius:var(--r-md);padding:10px 13px;border:1px solid var(--border)}
+.b-name{font-size:13px;font-weight:600;margin-bottom:3px}
+.b-desc{font-size:12px;color:var(--text2);line-height:1.5}
+
+/* cheat */
+.cheat-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.cheat-sub{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.kw-list{display:flex;flex-wrap:wrap;gap:6px}
+.kw{font-size:12px;padding:4px 10px;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r-sm);color:var(--text2);font-weight:500}
+.q-item{display:flex;gap:9px;font-size:13.5px;line-height:1.55;margin-bottom:10px}
+.q-num{font-size:11px;font-weight:700;flex-shrink:0;background:var(--blue-bg);color:var(--blue-tx);border-radius:4px;padding:2px 6px;height:fit-content;margin-top:2px}
+
+/* code */
+.code-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden}
+.code-pane{padding:1rem 1.125rem}
+.cp-left{background:#1e1e2e;border-right:1px solid #333}
+.cp-right{background:var(--surface)}
+.pane-lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:10px}
+.cp-left .pane-lbl{color:#7c7c9e}
+.cp-right .pane-lbl{color:var(--text3)}
+.code-block{font-family:'DM Mono',monospace;font-size:12.5px;line-height:1.75;color:#cdd6f4;white-space:pre-wrap;word-break:break-word}
+.plain-eng{font-size:13.5px;line-height:1.65;color:var(--text2)}
+.plain-eng strong{color:var(--text);font-weight:600}
+
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="logo"><i class="ti ti-code-circle"></i>Tech Explorer</div>
+    <div class="grp">
+      <p class="grp-label">Frontend</p>
+      <button class="nav-btn" data-key="react"><i class="ti ti-brand-react"></i>React</button>
+      <button class="nav-btn" data-key="vue"><i class="ti ti-brand-vue"></i>Vue</button>
+    </div>
+    <div class="grp">
+      <p class="grp-label">Backend</p>
+      <button class="nav-btn" data-key="python"><i class="ti ti-brand-python"></i>Python</button>
+      <button class="nav-btn" data-key="sql"><i class="ti ti-database"></i>SQL</button>
+    </div>
+    <div class="grp">
+      <p class="grp-label">DevOps &amp; Cloud</p>
+      <button class="nav-btn" data-key="docker"><i class="ti ti-brand-docker"></i>Docker</button>
+      <button class="nav-btn" data-key="kubernetes"><i class="ti ti-topology-ring"></i>Kubernetes</button>
+      <button class="nav-btn" data-key="aws"><i class="ti ti-cloud"></i>AWS</button>
+    </div>
+    <div class="grp">
+      <p class="grp-label">Data Science</p>
+      <button class="nav-btn" data-key="tensorflow"><i class="ti ti-brain"></i>TensorFlow</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="search-wrap">
+      <i class="ti ti-search search-icon"></i>
+      <input type="text" id="searchInput" placeholder="Search a technology — React, Docker, Python…" autocomplete="off"/>
+      <div class="suggestions" id="suggestions"></div>
+    </div>
+    <div id="content">
+      <div class="home">
+        <div class="home-icon"><i class="ti ti-telescope"></i></div>
+        <h2>Search or click a technology</h2>
+        <p>Pick a language or framework from the sidebar, or type in the search bar to get a full plain-English breakdown.</p>
+      </div>
+    </div>
+  </main>
+
+</div>
+<script>
+const DATA = {
+  react:{
+    name:"React",tagline:"A JavaScript library for building interactive user interfaces",
+    icon:"ti-brand-react",iconBg:"#ddeeff",iconColor:"#1558a0",
+    badges:[{t:"Frontend",c:"b-blue"},{t:"JavaScript",c:"b-amber"},{t:"Meta / Open Source",c:"b-green"},{t:"Since 2013",c:"b-red"}],
+    analogy:{head:"React is like LEGO bricks for websites.",body:"Just like you build complex LEGO models from small, reusable bricks, React lets developers build complex UIs from small, reusable components. Each piece — a button, a card, a nav bar — is built once and snapped together in different combinations across the whole app."},
+    builds:[
+      {n:"Facebook & Instagram feeds",d:"Infinite-scroll feeds where new posts load dynamically without a page refresh"},
+      {n:"Netflix homepage",d:"Rows of shows that update in real time based on your personal watch history"},
+      {n:"Airbnb listing pages",d:"Interactive maps, date pickers, guest selectors, and booking confirmation flows"},
+      {n:"Notion editor",d:"Real-time collaborative rich-text editing built from modular block components"}
+    ],
+    kw:["Component-based architecture","Virtual DOM","React Hooks (useState / useEffect)","State management (Redux / Zustand)"],
+    qs:["Can you walk me through how you managed shared state across deeply nested components in a large React app?","What is the difference between useEffect and useLayoutEffect, and when would you reach for each one?"],
+    code:"function Greeting({ name }) {\n  return (\n    <h1>Hello, {name}!</h1>\n  );\n}",
+    plain:"This defines a reusable <strong>Greeting building block</strong>. You pass it a person's name and it produces a personalised heading. Drop this block anywhere on the site and it instantly shows the right name — no copy-pasting HTML needed."
+  },
+  python:{
+    name:"Python",tagline:"A versatile, readable programming language used across web, data science, and AI",
+    icon:"ti-brand-python",iconBg:"#e6f3e0",iconColor:"#2d6e18",
+    badges:[{t:"Backend",c:"b-green"},{t:"Data Science",c:"b-blue"},{t:"AI / ML",c:"b-purple"},{t:"Scripting",c:"b-amber"}],
+    analogy:{head:"Python is like a Swiss Army knife for developers.",body:"Just as a Swiss Army knife has a blade, scissors, and a screwdriver all in one compact tool, Python handles web apps, data analysis, AI models, and automation scripts — all with one language. It's famously readable, almost like writing plain English."},
+    builds:[
+      {n:"Instagram's backend",d:"The server logic that handles millions of photo uploads and feed requests every day"},
+      {n:"Netflix recommendation engine",d:"The algorithm that predicts what you will want to watch next based on your history"},
+      {n:"SpaceX flight software",d:"Data pipelines for rocket telemetry processing and mission analysis"},
+      {n:"ChatGPT / LLM training",d:"Training and serving large language models at massive computational scale"}
+    ],
+    kw:["Django / FastAPI","Pandas / NumPy","REST API design","Asyncio / concurrency"],
+    qs:["How have you used Python for data processing or automation — what was the scale and complexity of the dataset?","What is the difference between a list and a generator in Python, and when does choosing the right one actually matter?"],
+    code:"scores = [88, 74, 95, 61]\naverage = sum(scores) / len(scores)\nprint(f\"Avg: {average}\")",
+    plain:"This takes a list of <strong>four test scores</strong>, adds them all up, divides by how many there are to get the average, then prints the result. It is a calculator that works on a whole list at once — no spreadsheet or manual loop required."
+  },
+  docker:{
+    name:"Docker",tagline:"A tool that packages software into portable, self-contained units called containers",
+    icon:"ti-brand-docker",iconBg:"#ddeeff",iconColor:"#1558a0",
+    badges:[{t:"DevOps",c:"b-blue"},{t:"Containerisation",c:"b-teal"},{t:"Infrastructure",c:"b-amber"},{t:"Since 2013",c:"b-green"}],
+    analogy:{head:"Docker is like a shipping container for software.",body:"Before shipping containers, loading cargo was chaotic — every package was a different shape. Containers standardised everything. Docker does the same for software: it wraps an app and everything it needs (code, settings, libraries) into one tidy container that runs identically on any machine, anywhere."},
+    builds:[
+      {n:"Spotify microservices",d:"Each feature — search, playlist, radio — runs in its own isolated container"},
+      {n:"GitHub Actions CI/CD",d:"Test pipelines that spin up fresh, clean environments every time a developer pushes code"},
+      {n:"Dev environment sharing",d:"It works on my machine — solved by sharing the exact same container definition"},
+      {n:"AWS / GCP cloud deploys",d:"Containers are the standard unit for cloud deployments at every major provider today"}
+    ],
+    kw:["Container orchestration","Dockerfile authoring","Docker Compose","Image layers and registry (ECR / DockerHub)"],
+    qs:["Walk me through how you structured a multi-container application using Docker Compose — what services were involved?","How do you keep Docker images lean and secure in production — what practices do you follow?"],
+    code:"FROM node:20\nWORKDIR /app\nCOPY . .\nRUN npm install\nCMD [\"node\", \"server.js\"]",
+    plain:"This is a recipe called a <strong>Dockerfile</strong> that says: start with a Node.js base, put our app files inside it, install all dependencies, then launch the server. Anyone with Docker installed can run this recipe and get the exact same working app — no surprises."
+  },
+  sql:{
+    name:"SQL",tagline:"The universal language for querying and managing relational databases",
+    icon:"ti-database",iconBg:"#fdf0d8",iconColor:"#8a5200",
+    badges:[{t:"Backend",c:"b-amber"},{t:"Data",c:"b-blue"},{t:"Databases",c:"b-teal"},{t:"Universal",c:"b-green"}],
+    analogy:{head:"SQL is like a very precise librarian for your data.",body:"Imagine a librarian who can instantly find every book by a specific author, published after 2010, sorted by title — across a library of a million books. SQL does exactly that for data: you describe what you want in plain English, and it retrieves precisely that from millions of records in milliseconds."},
+    builds:[
+      {n:"Uber trip pricing engine",d:"Querying ride history, surge zones, and driver locations in real time to calculate fares"},
+      {n:"Shopify order management",d:"Every product, order, customer, and payment transaction tracked in relational tables"},
+      {n:"Hospital patient records",d:"Storing and retrieving patient data, prescriptions, and diagnostic test results securely"},
+      {n:"Banking transaction ledgers",d:"Every debit and credit tracked, reconciled, and audited with guaranteed data consistency"}
+    ],
+    kw:["Joins (INNER / LEFT / RIGHT)","Indexing and query optimisation","Stored procedures and views","ACID compliance"],
+    qs:["Can you explain the difference between an INNER JOIN and a LEFT JOIN, and give me a concrete use case for each?","How have you diagnosed and fixed a slow database query in production — what tools or techniques did you reach for?"],
+    code:"SELECT name, email\nFROM users\nWHERE signup_date > '2024-01-01'\nORDER BY name ASC;",
+    plain:"This asks the database: <strong>give me the name and email of every user who signed up after January 2024, listed alphabetically.</strong> It is like applying a filter on a spreadsheet — but working instantly across millions of rows without loading them into memory."
+  },
+  aws:{
+    name:"AWS",tagline:"Amazon's cloud platform — the world's largest collection of on-demand computing services",
+    icon:"ti-cloud",iconBg:"#fdf0d8",iconColor:"#8a5200",
+    badges:[{t:"Cloud",c:"b-amber"},{t:"Infrastructure",c:"b-blue"},{t:"DevOps",c:"b-teal"},{t:"Amazon",c:"b-green"}],
+    analogy:{head:"AWS is like renting a city's entire infrastructure instead of building your own.",body:"Instead of buying servers, building data centres, and hiring a facilities team, AWS lets you rent exactly what you need — for an hour, a day, or a year. Need more power during Black Friday? Turn a dial up. Sales over? Turn it back down. You only pay for what you actually use."},
+    builds:[
+      {n:"Netflix streaming",d:"S3 and CloudFront deliver video to 260M+ subscribers worldwide with near-zero downtime"},
+      {n:"Airbnb entire backend",d:"Databases, compute instances, and file storage for 100M+ guests all hosted on AWS"},
+      {n:"NASA Mars rover data",d:"Petabytes of space mission telemetry stored, processed, and analysed in the cloud"},
+      {n:"Zoom video infrastructure",d:"Elastic compute that scaled from thousands to millions of users overnight in 2020"}
+    ],
+    kw:["EC2 / Lambda (serverless)","S3 object storage","IAM and security policies","Auto-scaling and load balancing"],
+    qs:["What is the difference between EC2 and Lambda — what criteria do you use to decide which one fits a given workload?","How have you approached cost optimisation on AWS — what services or architecture changes made the biggest real-world difference?"],
+    code:"import boto3\ns3 = boto3.client('s3')\ns3.upload_file(\n  'report.pdf',\n  'my-bucket',\n  'reports/2024/report.pdf'\n)",
+    plain:"This Python code <strong>uploads a PDF to AWS cloud storage (S3)</strong> — like saving a file to a shared drive, but one that is globally accessible, replicated across multiple data centres, and can handle millions of simultaneous downloads without breaking a sweat."
+  },
+  kubernetes:{
+    name:"Kubernetes",tagline:"An orchestration platform that manages and auto-scales Docker containers in production",
+    icon:"ti-topology-ring",iconBg:"#efedfd",iconColor:"#4a3db0",
+    badges:[{t:"DevOps",c:"b-purple"},{t:"Orchestration",c:"b-blue"},{t:"Cloud-native",c:"b-teal"},{t:"Google",c:"b-green"}],
+    analogy:{head:"Kubernetes is like an air traffic control system for your containers.",body:"Docker gives you individual planes (containers). Kubernetes is the control tower — it decides where each plane lands, reroutes if a runway is busy, brings in more planes during rush hour, and parks them when traffic is quiet. It keeps everything running safely without any manual intervention."},
+    builds:[
+      {n:"Google Search infrastructure",d:"Billions of daily queries routed across thousands of servers automatically with zero downtime"},
+      {n:"Pokemon GO launch",d:"Kubernetes scaled from thousands to tens of millions of users in days when the game launched"},
+      {n:"Goldman Sachs trading systems",d:"Financial workloads that require zero-downtime deployments and instant failover"},
+      {n:"Spotify global delivery",d:"Microservices for playlists, search, and streaming all coordinated at planetary scale"}
+    ],
+    kw:["Pods and Deployments","Horizontal Pod Autoscaling","Helm charts","Service mesh (Istio / Linkerd)"],
+    qs:["How does a Kubernetes Deployment differ from a bare Pod, and why does that distinction matter in a real production environment?","Walk me through how you would handle a zero-downtime rolling deployment and rollback strategy in Kubernetes."],
+    code:"replicas: 3\ncontainers:\n  - name: api\n    image: myapp:v2\n    resources:\n      limits:\n        memory: \"256Mi\"",
+    plain:"This config tells Kubernetes: <strong>run 3 identical copies of version 2 of our app</strong>, each capped at 256MB of memory. If one copy crashes, Kubernetes automatically replaces it. If traffic spikes, it can spin up more copies — no human needed."
+  },
+  vue:{
+    name:"Vue",tagline:"A progressive JavaScript framework for building interactive web interfaces",
+    icon:"ti-brand-vue",iconBg:"#e6f3e0",iconColor:"#2d6e18",
+    badges:[{t:"Frontend",c:"b-green"},{t:"JavaScript",c:"b-amber"},{t:"Progressive",c:"b-teal"},{t:"Open Source",c:"b-blue"}],
+    analogy:{head:"Vue is like React's more approachable sibling.",body:"If React is a full LEGO Technic set (powerful but complex), Vue is standard LEGO — a bit simpler to start with, but just as capable for most builds. It is particularly loved for its gentle learning curve, clean single-file components, and very readable templates."},
+    builds:[
+      {n:"Alibaba storefront",d:"One of the first major enterprise adopters — massive e-commerce product listing UIs"},
+      {n:"GitLab web interface",d:"Code review, merge requests, pipelines, and project management dashboard"},
+      {n:"Chess.com",d:"Real-time game board rendering and live match updates with instant reactivity"},
+      {n:"Behance by Adobe",d:"Creative portfolio pages with rich media galleries and interactive components"}
+    ],
+    kw:["Vue Composition API","Vuex / Pinia (state management)","Single File Components (.vue)","Nuxt.js (SSR / static)"],
+    qs:["What is the difference between Vue's Options API and Composition API — when do you prefer one over the other?","How have you handled reactive state that needs to be shared across multiple unrelated components in a Vue app?"],
+    code:"<template>\n  <p>Count: {{ count }}</p>\n  <button @click=\"count++\">+1</button>\n</template>\n\n<script setup>\nconst count = ref(0);\n<\/script>",
+    plain:"This creates a <strong>counter widget</strong>: a number displayed on screen and a button. Every click increases the number by 1. Vue automatically updates what the user sees the instant the number changes — no manual DOM manipulation or page refresh needed."
+  },
+  tensorflow:{
+    name:"TensorFlow",tagline:"Google's open-source framework for building and training machine learning models",
+    icon:"ti-brain",iconBg:"#fdeaea",iconColor:"#9b2222",
+    badges:[{t:"AI / ML",c:"b-red"},{t:"Data Science",c:"b-blue"},{t:"Python",c:"b-green"},{t:"Google",c:"b-amber"}],
+    analogy:{head:"TensorFlow is like a gym for teaching computers to think.",body:"You don't program the answers directly. Instead, you show the computer thousands of labelled examples (like showing a child photos of cats and dogs), and TensorFlow provides the machinery to train the computer's brain — a neural network — until it can recognise patterns entirely on its own."},
+    builds:[
+      {n:"Google Photos recognition",d:"Identifying faces, objects, and scenes across billions of photos in your library"},
+      {n:"YouTube recommendations",d:"Predicting which video you will click next based on your full watch history"},
+      {n:"Medical image diagnosis",d:"Detecting tumours in MRI and CT scans with radiologist-level accuracy"},
+      {n:"Google Translate",d:"Neural machine translation delivering fluent results across 100+ languages in real time"}
+    ],
+    kw:["Neural networks / deep learning","Model training and inference","Keras (high-level API)","GPU / TPU acceleration"],
+    qs:["How do you prevent overfitting when training a model — which regularisation techniques have you actually used in production?","Walk me through the difference between training, validation, and test datasets and why mixing them up is such a critical mistake."],
+    code:"model = tf.keras.Sequential([\n  Dense(128, activation='relu'),\n  Dense(10, activation='softmax')\n])\nmodel.compile(\n  optimizer='adam',\n  loss='sparse_categorical_crossentropy')",
+    plain:"This builds a simple <strong>neural network brain</strong> with two layers: the first (128 neurons) finds patterns, the second (10 neurons) outputs one of 10 possible answers. It is then prepped for learning using the Adam teaching method — like choosing the best revision strategy before an exam."
+  }
+};
+
+const allKeys = Object.keys(DATA);
+
+// ── Sidebar click (event delegation, no onclick attributes) ──
+document.querySelector('.sidebar').addEventListener('click', function(e) {
+  const btn = e.target.closest('[data-key]');
+  if (btn) showTech(btn.dataset.key);
+});
+
+// ── Search input ──
+document.getElementById('searchInput').addEventListener('input', function() {
+  const q = this.value.toLowerCase().trim();
+  const sugg = document.getElementById('suggestions');
+  if (!q) { sugg.style.display = 'none'; return; }
+  const matches = allKeys.filter(k => k.includes(q) || DATA[k].name.toLowerCase().includes(q));
+  if (!matches.length) { sugg.style.display = 'none'; return; }
+  sugg.innerHTML = matches.map(k =>
+    `<div class="sugg-item" data-key="${k}"><i class="ti ${DATA[k].icon}"></i>${DATA[k].name}</div>`
+  ).join('');
+  sugg.style.display = 'block';
+});
+
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    const q = this.value.toLowerCase().trim();
+    const match = allKeys.find(k => k === q || DATA[k].name.toLowerCase() === q);
+    if (match) { showTech(match); document.getElementById('suggestions').style.display = 'none'; }
+  }
+  if (e.key === 'Escape') document.getElementById('suggestions').style.display = 'none';
+});
+
+// ── Suggestion click ──
+document.getElementById('suggestions').addEventListener('click', function(e) {
+  const item = e.target.closest('[data-key]');
+  if (item) { showTech(item.dataset.key); this.style.display = 'none'; }
+});
+
+// ── Close suggestions when clicking outside ──
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.search-wrap')) document.getElementById('suggestions').style.display = 'none';
+});
+
+function esc(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function showTech(key) {
+  const d = DATA[key];
+  if (!d) return;
+
+  // update search input
+  document.getElementById('searchInput').value = d.name;
+  document.getElementById('suggestions').style.display = 'none';
+
+  // update active sidebar button
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const activeBtn = document.querySelector(`.nav-btn[data-key="${key}"]`);
+  if (activeBtn) activeBtn.classList.add('active');
+
+  document.getElementById('content').innerHTML = `
+    <div class="hero">
+      <div class="tech-icon" style="background:${d.iconBg}">
+        <i class="ti ${d.icon}" style="color:${d.iconColor};font-size:28px"></i>
+      </div>
+      <div style="flex:1;min-width:0">
+        <h1 class="hero-title">${d.name}</h1>
+        <p class="hero-sub">${d.tagline}</p>
+        <div class="badges">${d.badges.map(b=>`<span class="badge ${b.c}">${b.t}</span>`).join('')}</div>
+      </div>
+    </div>
+
+    <div class="sections">
+
+      <div class="card">
+        <div class="card-hd"><i class="ti ti-bulb" style="color:#c87d00"></i><span class="card-title">Real-world analogy</span></div>
+        <div class="analogy-box">
+          <p class="a-head">${d.analogy.head}</p>
+          <p class="a-body">${d.analogy.body}</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd"><i class="ti ti-building-skyscraper" style="color:#1558a0"></i><span class="card-title">What it actually builds</span></div>
+        <div class="builds-grid">
+          ${d.builds.map(b=>`<div class="build"><p class="b-name">${b.n}</p><p class="b-desc">${b.d}</p></div>`).join('')}
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd"><i class="ti ti-clipboard-check" style="color:#0d6e54"></i><span class="card-title">Recruiter cheat sheet</span></div>
+        <div class="cheat-row">
+          <div>
+            <p class="cheat-sub">Golden resume keywords</p>
+            <div class="kw-list">${d.kw.map(k=>`<span class="kw">${k}</span>`).join('')}</div>
+          </div>
+          <div>
+            <p class="cheat-sub">Smart screening questions</p>
+            ${d.qs.map((q,i)=>`<div class="q-item"><span class="q-num">Q${i+1}</span><span>${q}</span></div>`).join('')}
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd"><i class="ti ti-code" style="color:#4a3db0"></i><span class="card-title">Code translation</span></div>
+        <div class="code-grid">
+          <div class="code-pane cp-left">
+            <p class="pane-lbl">The actual code</p>
+            <div class="code-block">${esc(d.code)}</div>
+          </div>
+          <div class="code-pane cp-right">
+            <p class="pane-lbl">What it does in plain English</p>
+            <p class="plain-eng">${d.plain}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>`;
+}
+</script>
+</body>
+</html>
